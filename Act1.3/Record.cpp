@@ -1,4 +1,5 @@
 #include "Record.h"
+#include <iostream>
 
 // <-------------------> Method to save dates in timestamp <------------------->
 Record::Record() {
@@ -40,36 +41,28 @@ Record::Record(std::string _month, std::string _day, std::string _hour,
 
   dateTime = mktime(&dateStruct);
 }
-
+//
 // <-------------------> Method to save dates in timestamp <------------------->
-
 std::string Record::getAll() {
   return month + " " + day + " " + hour + ":" + minute + ":" + second + " " +
          ip + ":" + port + " " + failure;
 }
-
 // <----------------> Comparison of objects using timestamp <----------------->
-
 bool Record::operator==(const Record &other) {
   return this->dateTime == other.dateTime;
 }
-
 bool Record::operator!=(const Record &other) {
   return this->dateTime != other.dateTime;
 }
-
 bool Record::operator>=(const Record &other) {
   return this->dateTime >= other.dateTime;
 }
-
 bool Record::operator<=(const Record &other) {
   return this->dateTime <= other.dateTime;
 }
-
 bool Record::operator>(const Record &other) {
   return this->dateTime > other.dateTime;
 }
-
 bool Record::operator<(const Record &other) {
   return this->dateTime < other.dateTime;
 }
