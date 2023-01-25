@@ -21,13 +21,6 @@
 
 // <--------------------> Functions <------------------------->
 
-// Funcion para obtener el tiempo total
-template <typename T> void totalTime(T startTime, T endTime) {
-  auto time = endTime - startTime;
-  std::cout << "Tiempo de ejecución: " << time / std::chrono::nanoseconds(1)
-            << " ns" << std::endl;
-}
-
 // Funcion para realizar un split de la informacion obtenida de los txt
 inline std::vector<std::string> splitstr(std::string str, std::string deli) {
   std::vector<std::string> vec;
@@ -90,7 +83,9 @@ int main() {
   auto startTime = std::chrono::system_clock::now();
   algorObj.bubbleSort(listRecords, listRecords.size(), compSort, swaps);
   auto endTime = std::chrono::high_resolution_clock::now();
-  totalTime(startTime, endTime);
+  auto time = endTime - startTime;
+  std::cout << "Tiempo de ejecución: " << time / std::chrono::microseconds(1)
+            << " ms" << std::endl;
   std::cout << "Comparaciones Sort Algorithm: " << compSort << std::endl;
   std::cout << "Swaps: " << swaps << std::endl;
   std::cout << std::endl;
@@ -101,7 +96,9 @@ int main() {
   startTime = std::chrono::system_clock::now();
   algorObj.mergeSort(listRecords, 0, listRecords.size() - 1, compSort);
   endTime = std::chrono::high_resolution_clock::now();
-  totalTime(startTime, endTime);
+  time = endTime - startTime;
+  std::cout << "Tiempo de ejecución: " << time / std::chrono::microseconds(1)
+            << " ms" << std::endl;
   std::cout << "Comparaciones Sort Algorithm: " << compSort << std::endl;
   std::cout << std::endl;
 
