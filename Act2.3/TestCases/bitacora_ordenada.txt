@@ -1,0 +1,14 @@
+
+-------> Original data <-------
+
+-------> Algorithm: Merge Sort <-------
+---> Aplicando algoritmo de ordenamiento 
+Tiempo de ejecución: 31584097 ms
+
+
+-------> Algorithm: Quick Sort <-------
+Tiempo de ejecución: 184361 ms
+
+-------> Ordered Data <-------
+
+Jun 01 08:04:31 : 
