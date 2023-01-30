@@ -6,7 +6,7 @@ Guillermo Esquivel Ortiz - A01625621
 Moisés Hiram Pineda Campos - A01625510
 
 24/Enero/2023
- 
+
 Compilacion para debug:
     g++ -std=c++17 -Wall -g -o main *.cpp
 Ejecucion con valgrind:
@@ -14,7 +14,7 @@ Ejecucion con valgrind:
     valgrind --leak-check=full ./main
 
  Compilacion para ejecucion:
-    g++ -std=c++17 -Wall -O3 -o main *.cpp && ./main
+    g++ -std=c++17 -Wall *.cpp && ./a.out
 */
 
 #include "DLinkedList.h"
@@ -25,7 +25,7 @@ int main() {
   DLinkedList<int> miLista;
 
   std::cout << "numElements: " << miLista.getNumElements() << std::endl;
-  
+
   //------------------addFirst------------------------------
   // Complejidad Computacional: O(n)
   std::cout << "---> Agregando 5 elementos al frente..." << std::endl;
@@ -131,11 +131,18 @@ int main() {
   }
  */
 
+  // <------------------> FindData Method <------------------------->
+  std::cout << "---> Implementacion del metodo FindData" << std::endl;
+  std::cout << miLista.findData(10) << std::endl;
+  // Valor no existente en la lista
+  std::cout << miLista.findData(15) << std::endl;
+  std::cout << std::endl;
+
   //-------------------------Sort-------------------------------
-  
+
   // Algoritmo: QuickSort
   // Complejidad Computacional: O(N log N))
-  
+
   std::cout << "---> Sort: Quicksort" << std::endl;
   std::cout << "Lista sin sort: ";
   miLista.printList();
@@ -149,7 +156,7 @@ int main() {
   miLista.printList();
   miLista.invert();
   miLista.printList();
-  
+
   //---------------------getReversedSublist---------------------
   // Complejidad Computacional: O(1)
   std::cout << "---> Metodo getReversedSublist" << std::endl;
@@ -160,6 +167,6 @@ int main() {
   miLista2.printList();
   std::cout << "Lista 1: ";
   miLista.printList();
-  
+
   return 0;
 }

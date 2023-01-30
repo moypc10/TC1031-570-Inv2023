@@ -16,20 +16,21 @@ private:
 public:
   DLinkedList();
   ~DLinkedList();
+  DLLNode<T> *partition(DLLNode<T> *start, DLLNode<T> *end);
+  DLinkedList<T> getReversedSublist(int p1, int p2);
+  DLinkedList(const DLinkedList<T> &list);
+  T getData(int position);
   int getNumElements();
+  int findData(T value);
   void printList();
   void printListReversed();
   void addFirst(T value);
   void addLast(T value);
-  bool deleteData(T value);
-  bool deleteAt(int position);
-  T getData(int position);
   void quickSort();
   void _quickSort(DLLNode<T> *start, DLLNode<T> *end);
-  DLLNode<T> *partition(DLLNode<T> *start, DLLNode<T> *end);
   void invert();
-  DLinkedList<T> getReversedSublist(int p1, int p2);
-  DLinkedList(const DLinkedList<T> &list);
+  bool deleteData(T value);
+  bool deleteAt(int position);
 };
 
 template <class T> DLinkedList<T>::DLinkedList() {
@@ -211,10 +212,35 @@ void DLinkedList<T>::_quickSort(DLLNode<T> *start, DLLNode<T> *end) {
   }
 }
 
+// <--------> Find Data <-------->
+// <--------> Complexity O(n) <-------->
+// (Method obtained from previous activities)
+template <class T> int DLinkedList<T>::findData(T value) {
+  if (head == nullptr && tail == nullptr) {
+    std::cout << "La lista esta vacia: ";
+    return -1;
+  } else {
+    int index = 0;
+    DLLNode<T> *p = head;
+
+    while (p != nullptr && p->data != value) {
+      p = p->next;
+      index++;
+    }
+    if (p == nullptr) {
+      std::cout << "El valor no existe en la lista: ";
+      return -1;
+    }
+    return index;
+  }
+
+  return -1;
+}
+
 //------------------------------Sort---------------------------------
 // <------------> Complexity O(nlog(n)) <------------>
 template <class T> void DLinkedList<T>::quickSort() {
-  //std::cout << "---> Aplicando algoritmo de ordenamiento " << std::endl;
+  // std::cout << "---> Aplicando algoritmo de ordenamiento " << std::endl;
   _quickSort(head, tail);
 }
 
@@ -257,7 +283,6 @@ template <class T> void DLinkedList<T>::invert() {
 }
 
 // <----------------------------> getReversedSublist
-// <---------------------------->
 // <------------> Complexity O(1) <------------>
 template <class T>
 DLinkedList<T> DLinkedList<T>::getReversedSublist(int p1, int p2) {
@@ -281,7 +306,6 @@ DLinkedList<T> DLinkedList<T>::getReversedSublist(int p1, int p2) {
 }
 
 // <----------------------------> Copia de LinkedList
-// <---------------------------->
 // <------------> Complexity O(1) <------------>
 template <class T> DLinkedList<T>::DLinkedList(const DLinkedList<T> &list) {
   std::cout << "---> Copia de LinkedList: " << this << std::endl;
