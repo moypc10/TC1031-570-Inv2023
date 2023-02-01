@@ -21,7 +21,7 @@
  *    ./a.out < TestCases/test0n.txt
  *
  * Compilacion y ejecucion:
- *   g++ -std=c++17 -Wall *.cpp && ./a.out < bitacoraHeap.txt > a.txt  
+ *   g++ -std=c++17 -Wall *.cpp && ./a.out < bitacoraHeap.txt > a.txt
  **/
 #include "MaxHeap.h"
 #include <algorithm> // Usado para la funcion removeX
@@ -55,7 +55,8 @@ std::string removeX(std::string str) {
 // <--------------------> Main <------------------------------>
 
 int main() {
-  MaxHeap<int> MaxHeap(16807);
+  MaxHeap<int> MaxHeap(
+      16807); // Obtenido de comando en sh "wc -l bitacoraHeap.txt"
   std::vector<std::string> rows, dataRow, ipPort, listIp;
   std::string tmp;
 
@@ -75,9 +76,14 @@ int main() {
     MaxHeap.push(stoi(tmp));
   }
 
-  MaxHeap.print();
-  
-
+  std::vector<int> item, quantity;
+  for (int i = 0; i < MaxHeap.getCapacity(); i++) {
+    int tmp = MaxHeap.extractMin();
+    for (int j = 0; j < item.size(); j++) {
+    
+    }
+    std::cout << MaxHeap.getCurrentSize() << std::endl;
+  }
 
   return 0;
 }
