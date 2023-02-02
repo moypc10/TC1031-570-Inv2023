@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <stdexcept>
-#include <vector>
 #include <unistd.h>
+#include <vector>
 
 template <class T> class MaxHeap {
 private:
@@ -24,13 +24,14 @@ public:
   T low();
   int getCapacity();
   int getCurrentSize();
-  int top();
+  T top();
+  void top_5();
   int size();
   int extractMin();
   bool isEmpty();
   void print();
   void push(T key);
-  void pop(int i, int);
+  void pop();
   void decreaseKey(int i, int n);
   void heapify(int i);
   std::vector<T> getMaxElements();
@@ -55,7 +56,7 @@ template <class T> int MaxHeap<T>::getCapacity() { return maxSize; }
 template <class T> int MaxHeap<T>::getCurrentSize() { return currentSize; }
 
 template <class T> void MaxHeap<T>::print() {
-  //std::cout << "Contenido del MaxHeap:" << std::endl;
+  // std::cout << "Contenido del MaxHeap:" << std::endl;
   for (int i = 0; i < currentSize; i++) {
     std::cout << data[i] << std::endl;
   }
@@ -83,12 +84,23 @@ template <class T> void MaxHeap<T>::push(T key) {
   }
 }
 
-template <class T> int MaxHeap<T>::top() {
+template <class T> T MaxHeap<T>::top() {
   if (isEmpty()) {
     throw std::out_of_range("El heap esta vacio");
     return {};
   }
   return data[0];
+}
+template <class T> void MaxHeap<T>::top_5() {
+  if (isEmpty()) {
+    std::cout << "El heap esta vacio" << std::endl;
+  } else {
+    std::cout << (data[0]).getN() << std::endl;
+    std::cout << (data[1]).getN() << std::endl;
+    std::cout << (data[2]).getN() << std::endl;
+    std::cout << (data[3]).getN() << std::endl;
+    std::cout << (data[4]).getN() << std::endl;
+  }
 }
 
 template <class T> T MaxHeap<T>::low() {
@@ -99,9 +111,17 @@ template <class T> T MaxHeap<T>::low() {
   return data[6];
 }
 
-template <class T> void MaxHeap<T>::pop(int i, int n) {
-  decreaseKey(i, n);
-  extractMin();
+template <class T> void MaxHeap<T>::pop() {
+  if (isEmpty())
+    throw std::out_of_range("No existen elementos en el heap");
+  if (getCurrentSize() == 1) {
+    data.pop_back();
+    currentSize--;
+  }
+  data[0] = data.back();
+  data.pop_back();
+  heapify(0);
+  currentSize--;
 }
 
 template <class T> void MaxHeap<T>::decreaseKey(int i, int n) {
@@ -115,7 +135,7 @@ template <class T> void MaxHeap<T>::decreaseKey(int i, int n) {
 
 template <class T> int MaxHeap<T>::extractMin() {
   if (currentSize <= 0)
-    return 145;
+    return -1;
   if (currentSize == 1) {
     currentSize--;
     return data[0];
