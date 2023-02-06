@@ -1,0 +1,5 @@
+Top 1: Ip: 73.89.221.25 | Grado de salida: 18
+Top 2: Ip: 185.109.34.183 | Grado de salida: 18
+Top 3: Ip: 90.167.116.74 | Grado de salida: 17
+Top 4: Ip: 174.190.90.229 | Grado de salida: 17
+Top 5: Ip: 115.157.160.175 | Grado de salida: 17

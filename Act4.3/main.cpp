@@ -39,7 +39,7 @@ int main() {
   // Complejidad Computacional: O(N)
   g1.processData();
 
-  // <-------------> Algoritmo Dijkstra <-------------------> 
+  // <-------------> Algoritmo Dijkstra <------------------->
   // Complejidad Computacional: O((V+E)logV)
   g1.dijkstraAlgorithmBM();
 
