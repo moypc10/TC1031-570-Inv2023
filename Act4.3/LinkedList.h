@@ -5,8 +5,7 @@
 #include <iostream>
 #include <stdexcept>
 
-template <class T> 
-class LinkedList {
+template <class T> class LinkedList {
 private:
   NodeLinkedList<T> *head;
   NodeLinkedList<T> *tail;
@@ -23,18 +22,18 @@ public:
   bool deleteAt(int position);
   T getData(int position);
   NodeLinkedList<T> *getHead();
-  
 };
 
 template <class T> LinkedList<T>::LinkedList() {
-  //std::cout << "---> Creando una lista ligada vacia: " << this << std::endl;
+  // std::cout << "---> Creando una lista ligada vacia: " << this << std::endl;
   head = nullptr;
   tail = nullptr;
   numElements = 0;
 }
 
 template <class T> LinkedList<T>::~LinkedList() {
-  //std::cout << "---> Liberando memoria de la lista ligada: " << this << std::endl;
+  // std::cout << "---> Liberando memoria de la lista ligada: " << this <<
+  // std::endl;
   NodeLinkedList<T> *p, *q;
   p = head;
   while (p != nullptr) {
@@ -49,7 +48,7 @@ template <class T> LinkedList<T>::~LinkedList() {
 
 template <class T> int LinkedList<T>::getNumElements() { return numElements; }
 
-template <class T> NodeLinkedList<T> * LinkedList<T>::getHead() { return head; }
+template <class T> NodeLinkedList<T> *LinkedList<T>::getHead() { return head; }
 
 template <class T> void LinkedList<T>::printList() {
   NodeLinkedList<T> *ptr = head;

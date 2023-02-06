@@ -3,11 +3,11 @@
 #ifndef _IP_H_
 #define _IP_H_
 
+#include <cmath>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <cmath>
 
 class Ip {
 private:

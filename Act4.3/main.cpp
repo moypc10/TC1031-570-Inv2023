@@ -31,17 +31,17 @@ int main() {
   inputInfo << std::cin.rdbuf();
   Graph g1;
 
-  //<----------------------->Cargar Gráfica<--------------------------------------->
-  //Complejidad Computacional: O(N)
+  // <--------------> Cargar Gráfica <------------------------>
+  // Complejidad Computacional: O(N)
   g1.loadDirWeightedGraph(inputInfo);
-  
-  //<------------------------->Procesar la Información<------------------------------->
-  //Complejidad Computacional: O(N)
+
+  // <-------------> Procesar la Información<------------->
+  // Complejidad Computacional: O(N)
   g1.processData();
 
-  //<------------------------->Algoritmo Dijkstra<------------------------------------>
-  //Complejidad Computacional: O((V+E)logV)
+  // <-------------> Algoritmo Dijkstra <-------------------> 
+  // Complejidad Computacional: O((V+E)logV)
   g1.dijkstraAlgorithmBM();
-  
+
   return 0;
 }

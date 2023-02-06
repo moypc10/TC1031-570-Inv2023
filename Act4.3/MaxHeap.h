@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <stdexcept>
-#include <unistd.h>
 #include <vector>
 
 template <class T> class MaxHeap {
