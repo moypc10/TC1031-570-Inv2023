@@ -114,7 +114,6 @@ void Graph::print() {
 // Complejidad computacional O(n)
 void Graph::heap() {
   ipHeap.setCapacity(numNodes);
-  std::map<unsigned int, Ip>::iterator ptr;
   for (ptr = mapIp.begin(); ptr != mapIp.end(); ptr++) {
     IpData val(ptr->second);
     ipHeap.push(val);
@@ -184,7 +183,6 @@ void Graph::dijkstraAlgorithmBM() {
       ptr = ptr->next;
     }
   }
-  std::map<unsigned int, Ip>::iterator ptr;
   /* Para obtener distancia_boostmaster.txt ejecutar el sh, quitar el comentario
      debajo y comentar el contenido proximo a este */
 
@@ -210,4 +208,12 @@ void Graph::dijkstraAlgorithmBM() {
   }
   std::cout << "Ip con menor probabilidad a ataque: " << ipD[mI - 1].first
             << " a " << mD << " unidades de distancia." << std::endl;
+}
+
+void Graph::hashTable() {
+  hT.setMaxSize(maxSizeHT);
+  
+  for (ptr = mapIp.begin(); ptr != mapIp.end(); ptr++) {
+    
+  }
 }

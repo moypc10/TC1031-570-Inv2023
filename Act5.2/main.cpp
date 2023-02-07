@@ -1,4 +1,4 @@
- /** Act 5.1 - Implementación individual de operaciones sobre conjuntos
+/** Act 4.3 - Actividad Integral de Grafos (Evidencia Competencia)
  *
  * Instituto Tecnológico y de Estudios Superiores de Monterrey
  * Campus Guadalajara
@@ -7,7 +7,7 @@
  * Moisés Hiram Pineda Campos - A01625510
  * Alma Paulina González Sandoval - A01631256
  *
- * 4 de Febrero del 2023
+ * 5 de Febrero del 2023
  *
  *****************************************************************
  *
@@ -15,46 +15,33 @@
  *    g++ -std=c++17 -g -o main *.cpp
  * Ejecucion con valgrind:
  *    nix-env -iA nixpkgs.valgrind
- *    valgrind --leak-check=full ./main
+ *    valgrind --leak-check=full ./main < TestCases/graph01.txt
  *
- * Compilacion para ejecucion:
- *    g++ -std=c++17 -O3 -o main *.cpp
- * Ejecucion:
- *    ./main
+ * Compilacion y ejecucion:
+ *    g++ -std=c++17 -Wall *.cpp && ./a.out < bitacoraGrafos.txt
  **/
 
+#include "Graph.h"
+#include "IpData.h"
 #include <iostream>
-#include <string>
-#include "OAHashTable.h"
+#include <sstream>
 
 int main() {
-  OAHashTable<std::string> myOAHT(7);
-  //myOAHT.setMaxSize(7);
-  
-  //------------------------Add---------------------------------
-  //Complejidad Computacional: O(1)    
-  std::cout << "<---- Metodo Add ----> " << std::endl;
-  myOAHT.add(5, "Hola");
-  myOAHT.add(6, "Memo");
-  myOAHT.add(15, "Moy");
-  myOAHT.add(7, "Pau");
-  myOAHT.print();
+  std::stringstream inputInfo;
+  inputInfo << std::cin.rdbuf();
+  Graph g1;
 
-  //-------------------------Find--------------------------------
-  //Complejidad Computacional: O(n)
-  std::cout << "\n<---- Metodo Find ----> " << std::endl;
-  std::cout << "Llave 5: " << myOAHT.find(5) << std::endl;
+  // <--------------> Cargar Gráfica <------------------------>
+  // Complejidad Computacional: O(N)
+  g1.loadDirWeightedGraph(inputInfo);
 
-  //-------------------------Remove------------------------------
-  //Complejidad Computacional: O(n)
-  std::cout << "\n<---- Metodo Remove ----> " << std::endl;
-  std::cout << "Eliminamos llave 7" << std::endl;
-  myOAHT.remove(7);
-  
-  //-------------------------Print-----------------------------
-  //Complejidad Computacional: O(n)
-  std::cout << "\n<---- Metodo Print ----> " << std::endl;
-  myOAHT.print();
+  // <-------------> Procesar la Información<------------->
+  // Complejidad Computacional: O(N)
+  g1.processData();
+
+  // <-------------> Algoritmo Dijkstra <------------------->
+  // Complejidad Computacional: O((V+E)logV)
+  g1.dijkstraAlgorithmBM();
 
   return 0;
 }
