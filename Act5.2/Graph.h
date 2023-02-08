@@ -18,14 +18,15 @@
 
 class Graph {
 private:
-  HashTable<int, IpData> hT;
+  HashTable<unsigned int, Ip> hT;
   MaxHeap<IpData> ipHeap;
   int numNodes;
   int numEdges;
   int indexBM;
-  int maxSizeHT = 16001;
+  int maxSizeHT = 21821;
   // Lista de adyacencia (vector de listas de pares (vertice, peso))
   std::vector<LinkedList<std::pair<int, int>>> adjList;
+  std::vector<Ip> listIp;
   std::map<unsigned int, Ip>::iterator ptr;
   std::map<unsigned int, Ip> mapIp;
   void heap();
@@ -38,9 +39,11 @@ public:
   void loadDirWeightedGraph(std::istream &input);
   void processData();
   void print();
+  void dijkstraAlgorithm(int v);
   void dijkstraAlgorithmBM();
+  void getIpSummary(std::string key);
   int findIpIndex(std::string ipString);
-  void hashTable();
+  int hashTable();
 };
 
 #endif // _GRAPH_H

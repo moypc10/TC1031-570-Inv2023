@@ -10,33 +10,36 @@ template <class K, class T> class HashTable {
 private:
   std::vector<HashNode<K, T>> table;
   int numElements;
-  // Preferible usar un numero primo
   // https://numerosprimos.org/numeros-primos-de-1-a-100000/
   int maxSize;
+  int collisions;
 
 public:
   HashTable();
   HashTable(int selectedMaxSize);
-  void setMaxSize(int selectedMaxSize);
-  // Funcion hash
-  int getHashIndex(K key);
-  int getNumElements();
   void print();
-  void add(K keyValue, T dataValue);
-  int find(K keyValue);
-  T getDataAt(int index);
+  void printN(K key);
   void remove(K keyValue);
+  void add(K keyValue, T dataValue);
+  void setMaxSize(int selectedMaxSize);
+  int getColl();
+  int getNumElements();
+  int find(K keyValue);
+  int getHashIndex(K key);
+  T getDataAt(int index);
 };
 
 template <class K, class T> HashTable<K, T>::HashTable() {
   maxSize = 0;
   numElements = 0;
+  collisions = 0;
   table = std::vector<HashNode<K, T>>(maxSize);
 }
 
 template <class K, class T> HashTable<K, T>::HashTable(int selectedMaxSize) {
   maxSize = selectedMaxSize;
   numElements = 0;
+  collisions = 0;
   table = std::vector<HashNode<K, T>>(maxSize);
 }
 
@@ -68,6 +71,10 @@ template <class K, class T> void HashTable<K, T>::print() {
   }
 }
 
+template <class K, class T> void HashTable<K, T>::printN(K key) {
+  std::cout << table[key].getData() << std::endl;
+}
+
 template <class K, class T> void HashTable<K, T>::add(K keyVal, T value) {
   if (numElements == maxSize) {
     throw std::out_of_range("Hash Table is full");
@@ -86,11 +93,13 @@ template <class K, class T> void HashTable<K, T>::add(K keyVal, T value) {
   } else { // Cell is already taken
     // Find next free space using quadratic probing
     // https://www.geeksforgeeks.org/quadratic-probing-in-hashing/
+    collisions++;
     int i = 1;
     int currentHashVal = getHashIndex(hashVal + i * i);
     HashNode<K, T> currentNode = table[currentHashVal];
     while (currentNode.getStatus() == 1) { // Cell is used
       i++;
+      collisions++;
       currentHashVal = getHashIndex(hashVal + i * i);
       currentNode = table[currentHashVal];
     }
@@ -143,4 +152,7 @@ template <class K, class T> void HashTable<K, T>::remove(K keyVal) {
   numElements--;
 }
 
+template <class K, class T> int HashTable<K, T>::getColl() {
+  return collisions;
+}
 #endif // _HASH_TABLE_H

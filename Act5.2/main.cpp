@@ -30,6 +30,7 @@ int main() {
   std::stringstream inputInfo;
   inputInfo << std::cin.rdbuf();
   Graph g1;
+  std::string ip;
 
   // <--------------> Cargar Gráfica <------------------------>
   // Complejidad Computacional: O(N)
@@ -39,9 +40,12 @@ int main() {
   // Complejidad Computacional: O(N)
   g1.processData();
 
-  // <-------------> Algoritmo Dijkstra <------------------->
-  // Complejidad Computacional: O((V+E)logV)
-  g1.dijkstraAlgorithmBM();
 
+  int coll = g1.hashTable();
+  std::cout << "Colisiones totales: " << coll << std::endl;
+
+  // <-------------> Algoritmo getIpSummary <------------------->
+  // Complejidad Computacional: O((V+E)logV)  
+  g1.getIpSummary("36.50.52.170");  
   return 0;
 }
